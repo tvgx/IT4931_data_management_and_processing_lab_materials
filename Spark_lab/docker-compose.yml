@@ -1,76 +1,71 @@
-version: '3.8'
-
 services:
   # Spark Master
   spark-master:
-    image: bitnami/spark:3.5.0
+    image: spark:3.4.1
     container_name: spark-master
     hostname: spark-master
-    environment:
-      - SPARK_MODE=master
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+        --host spark-master
+        --port 7077
+        --webui-port 8080
     ports:
       - "8080:8080"  # Spark Master UI
       - "7077:7077"  # Spark Master port
     volumes:
-      - ./data:/opt/bitnami/spark/data
-      - ./code:/opt/bitnami/spark/code
-      - ./scripts:/opt/bitnami/spark/scripts
+      - ./data:/opt/spark/data
+      - ./code:/opt/spark/code
+      - ./scripts:/opt/spark/scripts
     networks:
       - spark-network
 
   # Spark Worker 1
   spark-worker-1:
-    image: bitnami/spark:3.5.0
+    image: spark:3.4.1
     container_name: spark-worker-1
     hostname: spark-worker-1
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=2G
-      - SPARK_WORKER_CORES=2
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+        spark://spark-master:7077
+        --webui-port 8081
+        --memory 2g
+        --cores 2
     depends_on:
       - spark-master
+    ports:
+      - "8081:8081"  # Worker 1 UI
     volumes:
-      - ./data:/opt/bitnami/spark/data
-      - ./code:/opt/bitnami/spark/code
-      - ./scripts:/opt/bitnami/spark/scripts
+      - ./data:/opt/spark/data
+      - ./code:/opt/spark/code
+      - ./scripts:/opt/spark/scripts
     networks:
       - spark-network
 
   # Spark Worker 2
   spark-worker-2:
-    image: bitnami/spark:3.5.0
+    image: spark:3.4.1
     container_name: spark-worker-2
     hostname: spark-worker-2
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=2G
-      - SPARK_WORKER_CORES=2
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+        spark://spark-master:7077
+        --webui-port 8082
+        --memory 2g
+        --cores 2
     depends_on:
       - spark-master
+    ports:
+      - "8082:8082"  # Worker 2 UI
     volumes:
-      - ./data:/opt/bitnami/spark/data
-      - ./code:/opt/bitnami/spark/code
-      - ./scripts:/opt/bitnami/spark/scripts
+      - ./data:/opt/spark/data
+      - ./code:/opt/spark/code
+      - ./scripts:/opt/spark/scripts
     networks:
       - spark-network
 
   # Jupyter Notebook for Spark
   jupyter-spark:
-    image: jupyter/pyspark-notebook:spark-3.5.0
+    image: jupyter/pyspark-notebook:latest
     container_name: jupyter-spark
     hostname: jupyter-spark
     environment:
@@ -129,7 +124,7 @@ services:
       kafka:
         condition: service_healthy
     ports:
-      - "8081:8081"
+      - "8083:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
