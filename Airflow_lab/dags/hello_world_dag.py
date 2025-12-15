@@ -1,5 +1,5 @@
 """
-Hello World DAG - DAG đơn giản nhất để làm quen với Airflow
+Hello World DAG - Simplest DAG to get familiar with Airflow
 """
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import pendulum
 
 from airflow.sdk import DAG, task
 
-# Định nghĩa DAG với @dag decorator
+# Define DAG with @dag decorator
 @dag(
     dag_id="hello_world",
     schedule=None,  # Manual trigger only
@@ -18,21 +18,21 @@ from airflow.sdk import DAG, task
 def hello_world_dag():
     """
     ### Hello World DAG
-    DAG đơn giản nhất với một task duy nhất.
+    Simplest DAG with a single task.
     """
     
     @task
     def hello_task():
         """### Hello Task
-        Task đơn giản in ra "Hello World!"
+        Simple task that prints "Hello World!"
         """
         print("Hello World!")
-        print("Chào mừng đến với Apache Airflow!")
+        print("Welcome to Apache Airflow!")
         return "Hello World completed successfully!"
     
-    # Gọi task để thêm vào DAG
+    # Call task to add to DAG
     hello_task()
 
-# Tạo DAG instance
+# Create DAG instance
 hello_world_dag()
 

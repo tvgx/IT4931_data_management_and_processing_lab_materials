@@ -1,16 +1,16 @@
 # Airflow Lab - Summary
 
-## 🎉 Airflow Lab đã được tạo thành công!
+## 🎉 Airflow Lab has been created successfully!
 
-### 📁 Cấu trúc thư mục:
+### 📁 Directory Structure:
 ```
 Airflow_lab/
-├── docker-compose.yml          # Airflow 3.1.1 với PostgreSQL
+├── docker-compose.yml          # Airflow 3.1.1 with PostgreSQL
 ├── requirements.txt            # Python dependencies
 ├── setup_airflow_lab.sh       # Setup script
-├── README.md                  # Hướng dẫn chi tiết
-├── SUMMARY.md                 # File này
-├── dags/                      # DAGs mẫu
+├── README.md                  # Detailed guide
+├── SUMMARY.md                 # This file
+├── dags/                      # Sample DAGs
 │   ├── hello_world_dag.py
 │   ├── tutorial_dag.py
 │   ├── branching_dag.py
@@ -23,7 +23,7 @@ Airflow_lab/
 └── data/                      # Sample data
 ```
 
-### 🚀 Cách sử dụng:
+### 🚀 How to Use:
 
 #### 1. Setup Environment:
 ```bash
@@ -58,8 +58,8 @@ jupyter lab
 ```
 
 #### 6. Run Labs:
-- Mở `notebooks/01_airflow_basics.ipynb`
-- Chạy từng cell để học Airflow fundamentals
+- Open `notebooks/01_airflow_basics.ipynb`
+- Run each cell to learn Airflow fundamentals
 
 ### 🌐 Web UIs:
 - **Airflow UI**: http://localhost:8080
@@ -68,35 +68,35 @@ jupyter lab
 ### 📊 Lab Content:
 
 #### **Lab 1: Airflow Basics** ✅
-- Kiến trúc Airflow
-- Web UI và CLI
+- Airflow architecture
+- Web UI and CLI
 - REST API
-- Trigger và monitor DAGs
+- Trigger and monitor DAGs
 
-#### **Lab 2: DAGs và Tasks** (Coming soon)
+#### **Lab 2: DAGs and Tasks** (Coming soon)
 - Task SDK (@dag, @task decorators)
 - Task dependencies
 - Error handling
 
-#### **Lab 3: Operators và Hooks** (Coming soon)
+#### **Lab 3: Operators and Hooks** (Coming soon)
 - BashOperator, PythonOperator
 - SQLExecuteQueryOperator
 - Custom operators
 
-#### **Lab 4: Task Dependencies và Branching** (Coming soon)
+#### **Lab 4: Task Dependencies and Branching** (Coming soon)
 - Bitshift operators
 - BranchPythonOperator
 - Trigger rules
 
-#### **Lab 5: XCom và Data Sharing** (Coming soon)
+#### **Lab 5: XCom and Data Sharing** (Coming soon)
 - XCom push/pull
 - Task return values
 - Data passing
 
-#### **Lab 6: Scheduling và Timetables** (Coming soon)
+#### **Lab 6: Scheduling and Timetables** (Coming soon)
 - Cron expressions
 - Custom timetables
-- Catchup và data intervals
+- Catchup and data intervals
 
 #### **Lab 7: End-to-End Pipeline** (Coming soon)
 - Kafka integration
@@ -104,14 +104,14 @@ jupyter lab
 - Database operations
 
 ### 🎯 Learning Outcomes:
-Sau khi hoàn thành lab series này, sinh viên sẽ có thể:
+After completing this lab series, students will be able to:
 
-1. **Airflow Fundamentals**: Hiểu kiến trúc và components
-2. **DAG Development**: Tạo DAGs với Task SDK
-3. **Operators & Hooks**: Sử dụng và tạo custom operators
-4. **Data Management**: Chia sẻ data với XCom
-5. **Scheduling**: Cấu hình scheduling phức tạp
-6. **Pipeline Integration**: Tích hợp với các hệ thống khác
+1. **Airflow Fundamentals**: Understand architecture and components
+2. **DAG Development**: Create DAGs with Task SDK
+3. **Operators & Hooks**: Use and create custom operators
+4. **Data Management**: Share data with XCom
+5. **Scheduling**: Configure complex scheduling
+6. **Pipeline Integration**: Integrate with other systems
 
 ### 🔧 Tech Stack:
 - **Apache Airflow**: 3.1.1 (latest stable)
@@ -126,7 +126,7 @@ Sau khi hoàn thành lab series này, sinh viên sẽ có thể:
 - **Destination**: Data warehouse, analytics
 - **Orchestration**: Airflow workflows
 
-### 🔗 Integration với Labs Khác:
+### 🔗 Integration with Other Labs:
 - **Kafka Lab**: Stream data ingestion
 - **Spark Lab**: Data processing
 - **NoSQL Lab**: Database operations
@@ -134,5 +134,4 @@ Sau khi hoàn thành lab series này, sinh viên sẽ có thể:
 
 ---
 
-**Airflow Lab đã sẵn sàng để sử dụng! 🚀**
-
+**Airflow Lab is ready to use! 🚀**

@@ -1,5 +1,5 @@
 """
-XCom DAG - DAG mẫu về chia sẻ data giữa các tasks với XCom
+XCom DAG - Sample DAG about sharing data between tasks with XCom
 """
 from __future__ import annotations
 
@@ -17,13 +17,13 @@ from airflow.sdk import DAG, task
 def xcom_dag():
     """
     ### XCom DAG
-    DAG mẫu về cách chia sẻ data giữa các tasks sử dụng XCom.
+    Sample DAG about how to share data between tasks using XCom.
     """
     
     @task
     def extract_data():
         """### Extract Data
-        Extract data và return để chia sẻ với task khác
+        Extract data and return to share with other tasks
         """
         data = {
             "users": [
@@ -39,7 +39,7 @@ def xcom_dag():
     @task
     def process_data(data: dict):
         """### Process Data
-        Nhận data từ extract_data và xử lý
+        Receive data from extract_data and process
         """
         users = data["users"]
         total_age = sum(user["age"] for user in users)
@@ -56,17 +56,17 @@ def xcom_dag():
     @task
     def save_summary(summary: dict):
         """### Save Summary
-        Nhận summary từ process_data và lưu
+        Receive summary from process_data and save
         """
         print(f"Saving summary: {summary}")
         print(f"Average age: {summary['average_age']:.2f}")
         return f"Summary saved: {summary['total_users']} users processed"
     
-    # Định nghĩa dependencies với data passing
+    # Define dependencies with data passing
     extracted = extract_data()
     processed = process_data(extracted)
     save_summary(processed)
 
-# Tạo DAG instance
+# Create DAG instance
 xcom_dag()
 

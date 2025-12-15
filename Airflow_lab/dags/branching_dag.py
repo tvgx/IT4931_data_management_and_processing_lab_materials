@@ -1,5 +1,5 @@
 """
-Branching DAG - DAG với conditional branching logic
+Branching DAG - DAG with conditional branching logic
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from airflow.providers.standard.operators.empty import EmptyOperator
 def branching_dag():
     """
     ### Branching DAG
-    DAG mẫu với conditional branching để học cách xử lý logic điều kiện.
+    Sample DAG with conditional branching to learn how to handle conditional logic.
     """
     
     start = EmptyOperator(task_id="start")
@@ -26,19 +26,19 @@ def branching_dag():
     @task.branch
     def check_condition(**context):
         """### Check Condition
-        Branch dựa trên điều kiện (ví dụ: ngày trong tuần)
+        Branch based on condition (e.g., day of week)
         """
-        # Lấy execution date từ context
+        # Get execution date from context
         execution_date = context["data_interval_start"]
         day_of_week = execution_date.weekday()
         
-        # Nếu là thứ 2 (0) hoặc thứ 6 (4), chạy cả 2 branches
+        # If Monday (0) or Friday (4), run both branches
         if day_of_week == 0 or day_of_week == 4:
             return ["branch_a", "branch_b"]
-        # Nếu là cuối tuần, chỉ chạy branch_a
+        # If weekend, only run branch_a
         elif day_of_week >= 5:
             return "branch_a"
-        # Ngày thường chỉ chạy branch_b
+        # Weekdays only run branch_b
         else:
             return "branch_b"
     
@@ -47,20 +47,20 @@ def branching_dag():
     branch_a = EmptyOperator(task_id="branch_a")
     branch_b = EmptyOperator(task_id="branch_b")
     
-    # Join task - chạy sau khi cả 2 branches hoàn thành
+    # Join task - runs after both branches complete
     join = EmptyOperator(
         task_id="join",
-        trigger_rule="none_failed_min_one_success",  # Chạy nếu ít nhất 1 branch thành công
+        trigger_rule="none_failed_min_one_success",  # Run if at least 1 branch succeeds
     )
     
     end = EmptyOperator(task_id="end")
     
-    # Định nghĩa dependencies
+    # Define dependencies
     start >> branching
     branching >> branch_a >> join
     branching >> branch_b >> join
     join >> end
 
-# Tạo DAG instance
+# Create DAG instance
 branching_dag()
 

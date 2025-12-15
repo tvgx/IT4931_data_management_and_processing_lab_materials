@@ -1,45 +1,45 @@
-# Airflow Lab - Data Pipeline Orchestration với Apache Airflow
+# Airflow Lab - Data Pipeline Orchestration with Apache Airflow
 
 ## 🎯 Overview
 
-Lab này cung cấp kiến thức thực hành về **Apache Airflow 3.1.1** - công cụ orchestration hàng đầu cho data pipelines. Sinh viên sẽ học cách thiết kế, lập lịch và giám sát các workflow phức tạp trong thực tế.
+This lab provides hands-on knowledge about **Apache Airflow 3.1.1** - the leading orchestration tool for data pipelines. Students will learn how to design, schedule, and monitor complex workflows in practice.
 
 ## 📚 Lab Structure
 
 ### **Lab 1: Airflow Basics**
-- **Focus**: Giới thiệu Airflow, cài đặt và cấu hình
-- **Skills**: Hiểu kiến trúc Airflow, Web UI, CLI commands
-- **Use Case**: Setup môi trường và chạy DAG đầu tiên
+- **Focus**: Introduction to Airflow, installation and configuration
+- **Skills**: Understanding Airflow architecture, Web UI, CLI commands
+- **Use Case**: Setup environment and run first DAG
 
-### **Lab 2: DAGs và Tasks**
-- **Focus**: Tạo DAGs với Task SDK (@dag, @task decorators)
-- **Skills**: Định nghĩa workflows, tasks, dependencies
-- **Use Case**: ETL pipeline đơn giản với Python tasks
+### **Lab 2: DAGs and Tasks**
+- **Focus**: Creating DAGs with Task SDK (@dag, @task decorators)
+- **Skills**: Defining workflows, tasks, dependencies
+- **Use Case**: Simple ETL pipeline with Python tasks
 
-### **Lab 3: Operators và Hooks**
-- **Focus**: Sử dụng các operators phổ biến (Bash, Python, SQL)
+### **Lab 3: Operators and Hooks**
+- **Focus**: Using common operators (Bash, Python, SQL)
 - **Skills**: BashOperator, PythonOperator, SQLExecuteQueryOperator
-- **Use Case**: Data extraction và transformation với nhiều loại operators
+- **Use Case**: Data extraction and transformation with various operator types
 
-### **Lab 4: Task Dependencies và Branching**
-- **Focus**: Quản lý dependencies, branching logic, trigger rules
+### **Lab 4: Task Dependencies and Branching**
+- **Focus**: Managing dependencies, branching logic, trigger rules
 - **Skills**: Bitshift operators (>>, <<), BranchPythonOperator
-- **Use Case**: Conditional workflows và error handling
+- **Use Case**: Conditional workflows and error handling
 
-### **Lab 5: XCom và Data Sharing**
-- **Focus**: Chia sẻ dữ liệu giữa các tasks với XCom
+### **Lab 5: XCom and Data Sharing**
+- **Focus**: Sharing data between tasks with XCom
 - **Skills**: Task return values, XCom push/pull, custom XCom backends
-- **Use Case**: Data pipeline với data passing giữa tasks
+- **Use Case**: Data pipeline with data passing between tasks
 
-### **Lab 6: Scheduling và Timetables**
-- **Focus**: Lập lịch DAGs với cron, timedelta, custom timetables
+### **Lab 6: Scheduling and Timetables**
+- **Focus**: Scheduling DAGs with cron, timedelta, custom timetables
 - **Skills**: Schedule intervals, catchup, data intervals
-- **Use Case**: Daily, hourly, và custom scheduling patterns
+- **Use Case**: Daily, hourly, and custom scheduling patterns
 
 ### **Lab 7: End-to-End Pipeline Integration**
-- **Focus**: Tích hợp Airflow với Kafka, Spark, Databases
+- **Focus**: Integrating Airflow with Kafka, Spark, Databases
 - **Skills**: Multi-service orchestration, monitoring, error recovery
-- **Use Case**: Complete data pipeline từ source → processing → destination
+- **Use Case**: Complete data pipeline from source → processing → destination
 
 ## 🚀 Quick Start
 
@@ -91,7 +91,7 @@ jupyter lab
 ```
 
 ### 6. Run Labs
-Mở notebooks theo thứ tự:
+Open notebooks in order:
 1. `notebooks/01_airflow_basics.ipynb`
 2. `notebooks/02_dags_and_tasks.ipynb`
 3. `notebooks/03_operators_and_hooks.ipynb`
@@ -103,17 +103,17 @@ Mở notebooks theo thứ tự:
 ## 🏗️ Architecture
 
 ### **Services Included:**
-- **Airflow Webserver (API Server)**: Port 8080 (Web UI và REST API)
-- **Airflow Scheduler**: Lập lịch và trigger DAGs
-- **Airflow DAG Processor**: Parse và load DAGs
-- **Airflow Triggerer**: Xử lý deferrable operators
+- **Airflow Webserver (API Server)**: Port 8080 (Web UI and REST API)
+- **Airflow Scheduler**: Schedules and triggers DAGs
+- **Airflow DAG Processor**: Parses and loads DAGs
+- **Airflow Triggerer**: Handles deferrable operators
 - **PostgreSQL**: Port 5432 (Metadata database)
 
 ### **Components:**
-- **DAGs**: Workflow definitions trong `dags/`
-- **Plugins**: Custom operators/hooks trong `plugins/`
-- **Logs**: Task execution logs trong `logs/`
-- **Config**: Airflow configuration trong `config/`
+- **DAGs**: Workflow definitions in `dags/`
+- **Plugins**: Custom operators/hooks in `plugins/`
+- **Logs**: Task execution logs in `logs/`
+- **Config**: Airflow configuration in `config/`
 
 ### **Data Flow:**
 ```
@@ -127,14 +127,14 @@ Source Data → Airflow DAG → Task 1 → Task 2 → ... → Destination
 ## 📊 Sample DAGs
 
 ### **Basic DAGs:**
-- `hello_world_dag.py`: DAG đơn giản nhất
-- `tutorial_dag.py`: DAG tutorial với nhiều tasks
-- `etl_pipeline_dag.py`: ETL pipeline mẫu
+- `hello_world_dag.py`: Simplest DAG
+- `tutorial_dag.py`: Tutorial DAG with multiple tasks
+- `etl_pipeline_dag.py`: Sample ETL pipeline
 
 ### **Advanced DAGs:**
 - `branching_dag.py`: Conditional branching
 - `dynamic_dag.py`: Dynamic task generation
-- `xcom_dag.py`: Data sharing với XCom
+- `xcom_dag.py`: Data sharing with XCom
 - `scheduled_dag.py`: Custom scheduling
 
 ### **Integration DAGs:**
@@ -216,59 +216,59 @@ _AIRFLOW_WWW_USER_PASSWORD=airflow
 
 ## 🎯 Learning Outcomes
 
-Sau khi hoàn thành lab series này, sinh viên sẽ có thể:
+After completing this lab series, students will be able to:
 
 1. **Airflow Fundamentals**:
-   - Hiểu kiến trúc và components của Airflow
-   - Sử dụng Web UI và CLI để quản lý DAGs
-   - Cài đặt và cấu hình Airflow environment
+   - Understand Airflow architecture and components
+   - Use Web UI and CLI to manage DAGs
+   - Install and configure Airflow environment
 
 2. **DAG Development**:
-   - Tạo DAGs với Task SDK (@dag, @task decorators)
-   - Định nghĩa task dependencies và workflows
-   - Implement branching và conditional logic
+   - Create DAGs with Task SDK (@dag, @task decorators)
+   - Define task dependencies and workflows
+   - Implement branching and conditional logic
 
 3. **Operators & Hooks**:
-   - Sử dụng các operators phổ biến
-   - Tạo custom operators và hooks
-   - Integrate với external systems
+   - Use common operators
+   - Create custom operators and hooks
+   - Integrate with external systems
 
 4. **Data Management**:
-   - Chia sẻ data giữa tasks với XCom
-   - Handle data passing trong pipelines
+   - Share data between tasks with XCom
+   - Handle data passing in pipelines
    - Implement data validation
 
 5. **Scheduling**:
-   - Cấu hình scheduling với cron và timetables
-   - Hiểu catchup và data intervals
+   - Configure scheduling with cron and timetables
+   - Understand catchup and data intervals
    - Implement custom scheduling logic
 
 6. **Pipeline Integration**:
-   - Tích hợp Airflow với Kafka, Spark, Databases
+   - Integrate Airflow with Kafka, Spark, Databases
    - Build end-to-end data pipelines
-   - Monitor và troubleshoot pipelines
+   - Monitor and troubleshoot pipelines
 
 ## 📋 Assessment Criteria
 
 ### **Beginner Level**:
-- Hoàn thành Lab 1 và 2
-- Hiểu basic concepts của Airflow
-- Tạo được DAG đơn giản
+- Complete Lab 1 and 2
+- Understand basic concepts of Airflow
+- Create a simple DAG
 
 ### **Intermediate Level**:
-- Hoàn thành Labs 1-5
-- Hiểu operators, dependencies, XCom
-- Implement được branching logic
+- Complete Labs 1-5
+- Understand operators, dependencies, XCom
+- Implement branching logic
 
 ### **Advanced Level**:
-- Hoàn thành tất cả labs
-- Build được end-to-end pipeline
-- Tích hợp với multiple systems
-- Optimize performance và reliability
+- Complete all labs
+- Build end-to-end pipeline
+- Integrate with multiple systems
+- Optimize performance and reliability
 
-## 🔗 Integration với Labs Khác
+## 🔗 Integration with Other Labs
 
-Lab này tích hợp với:
+This lab integrates with:
 - **Kafka Lab**: Stream data ingestion
 - **Spark Lab**: Data processing
 - **NoSQL Lab**: Database operations
@@ -276,13 +276,12 @@ Lab này tích hợp với:
 
 ## 🎉 Next Steps
 
-Sau khi hoàn thành Airflow Lab, bạn có thể:
-1. Tích hợp với dbt Lab (transformation)
-2. Thêm Data Quality Lab (Great Expectations)
-3. Implement CI/CD cho data pipelines
-4. Deploy lên production environment
+After completing Airflow Lab, you can:
+1. Integrate with dbt Lab (transformation)
+2. Add Data Quality Lab (Great Expectations)
+3. Implement CI/CD for data pipelines
+4. Deploy to production environment
 
 ---
 
 **Happy Orchestrating! 🚀**
-

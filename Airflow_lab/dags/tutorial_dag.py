@@ -1,5 +1,5 @@
 """
-Tutorial DAG - DAG mẫu với nhiều tasks và dependencies
+Tutorial DAG - Sample DAG with multiple tasks and dependencies
 """
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from airflow.providers.standard.operators.bash import BashOperator
 
 @dag(
     dag_id="tutorial_dag",
-    schedule="@daily",  # Chạy hàng ngày
+    schedule="@daily",  # Run daily
     start_date=pendulum.datetime(2024, 1, 1, tz="UTC"),
     catchup=False,
     tags=["tutorial", "example"],
@@ -18,7 +18,7 @@ from airflow.providers.standard.operators.bash import BashOperator
 def tutorial_dag():
     """
     ### Tutorial DAG
-    DAG mẫu với nhiều tasks và dependencies để học cách sử dụng Airflow.
+    Sample DAG with multiple tasks and dependencies to learn how to use Airflow.
     """
     
     # Task 1: Bash Operator
@@ -27,7 +27,7 @@ def tutorial_dag():
         bash_command="echo 'Starting pipeline...'",
     )
     
-    # Task 2: Python Task với @task decorator
+    # Task 2: Python Task with @task decorator
     @task
     def extract_data():
         """### Extract Data
@@ -60,13 +60,13 @@ def tutorial_dag():
         bash_command="echo 'Pipeline completed!'",
     )
     
-    # Định nghĩa dependencies
+    # Define dependencies
     extracted_data = extract_data()
     transformed_data = transform_data(extracted_data)
     loaded_data = load_data(transformed_data)
     
     start_task >> extracted_data >> transformed_data >> loaded_data >> end_task
 
-# Tạo DAG instance
+# Create DAG instance
 tutorial_dag()
 
